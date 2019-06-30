@@ -1,0 +1,6 @@
+# From the documentation
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+
+# By ourselves
+-dontwarn retrofit2.**

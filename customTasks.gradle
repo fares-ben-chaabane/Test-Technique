@@ -1,0 +1,26 @@
+// Provide methods to get versionCode and versionName
+apply from: "${rootProject.projectDir}/version.gradle"
+
+def CUSTOM_TASKS_GROUP = "Customs tasks"
+task runAllDebugTests(dependsOn: [
+
+])
+runAllDebugTests.group = CUSTOM_TASKS_GROUP
+
+task runAllReleaseTests(dependsOn: [
+
+])
+runAllReleaseTests.group = CUSTOM_TASKS_GROUP
+
+task runAllDebugAndroidTest(dependsOn: [
+        
+])
+runAllDebugAndroidTest.group = CUSTOM_TASKS_GROUP
+
+task printVersion {
+    doLast {
+        print "AppVersion: v" + computeVersionName() + "\n"
+        print "AppVersionCode: v" + computeVersionCode() + "\n"
+    }
+}
+printVersion.group = CUSTOM_TASKS_GROUP

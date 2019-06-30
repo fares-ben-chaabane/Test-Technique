@@ -1,0 +1,56 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'realm-android'
+
+android {
+    publishNonDefault true
+    compileSdkVersion Integer.parseInt(compileSdkVersionVar)
+
+    defaultConfig {
+        minSdkVersion Integer.parseInt(minSdkVersionVar)
+        targetSdkVersion Integer.parseInt(targetSdkVersionVar)
+
+        versionCode computeVersionCode()
+        versionName computeProdVersionName()
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+}
+
+dependencies {
+
+    implementation project(':commons')
+    implementation project(':commons_android')
+    implementation project(':domainLayer')
+
+    implementation libraries.kotlin
+    implementation libraries.threeTen
+    implementation libraries.okhttpLogInterceptor
+    implementation libraries.retrofit2
+    implementation libraries.retrofit2ConverterGson
+    implementation libraries.retrofit2Adapter
+    implementation libraries.gson
+    implementation libraries.rxJava
+    implementation libraries.supportAnnotations
+    implementation libraries.realmExt
+
+    testImplementation testLibraries.junit
+    testImplementation testLibraries.mockito
+    testImplementation testLibraries.mockitoKotlin
+    testImplementation testLibraries.kluent
+    testImplementation testLibraries.robolectric
+}

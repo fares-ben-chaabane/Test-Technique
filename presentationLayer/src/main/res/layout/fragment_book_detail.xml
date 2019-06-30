@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                       android:layout_height="match_parent">
+
+        <!-- Guidelines Views -->
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/start_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95"/>
+
+        <!-- Book Cover View -->
+        <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/book_cover_view"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:scaleType="centerCrop"/>
+
+        <!-- Book Title View -->
+        <TextView
+                android:id="@+id/book_title_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/book_cover_view"
+                app:layout_constraintStart_toEndOf="@id/start_guideline"
+                app:layout_constraintEnd_toStartOf="@id/end_guideline"
+                android:gravity="start"
+                android:fontFamily="sans-serif-condensed-medium"
+                style="@style/TextViewStyle.Medium"
+                tools:text="Book Title"/>
+
+        <!-- Book Author View -->
+        <TextView
+                android:id="@+id/book_author_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/start_guideline"
+                app:layout_constraintEnd_toStartOf="@id/end_guideline"
+                app:layout_constraintTop_toBottomOf="@id/book_title_view"
+                android:gravity="start"
+                android:layout_marginTop="8dp"
+                style="@style/TextViewStyle.Medium"
+                tools:text="Written by Fares"/>
+
+        <!-- Book Summary View -->
+        <TextView
+                android:id="@+id/book_summary_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/start_guideline"
+                app:layout_constraintEnd_toStartOf="@id/end_guideline"
+                app:layout_constraintTop_toBottomOf="@id/book_author_view"
+                android:gravity="start"
+                android:layout_marginTop="8dp"
+                android:fontFamily="cursive"
+                style="@style/TextViewStyle.Medium"
+                tools:text="Written by Fares lorem perum bobum eio yyeuue yyyruue yyurui e"/>
+
+        <!-- Book Distribution View -->
+        <TextView
+                android:id="@+id/book_distribution_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/start_guideline"
+                app:layout_constraintEnd_toStartOf="@id/end_guideline"
+                app:layout_constraintTop_toBottomOf="@id/book_summary_view"
+                android:gravity="end"
+                android:layout_marginTop="15dp"
+                android:fontFamily="serif"
+                style="@style/TextViewStyle.Medium"
+                tools:text="Distributed by Fares in 1989"/>
+
+        <!-- Book Page Count View -->
+        <TextView
+                android:id="@+id/book_pages_count_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/start_guideline"
+                app:layout_constraintEnd_toStartOf="@id/end_guideline"
+                app:layout_constraintTop_toBottomOf="@id/book_distribution_view"
+                android:gravity="end"
+                android:layout_marginTop="4dp"
+                android:fontFamily="serif"
+                style="@style/TextViewStyle.Medium"
+                tools:text="80 pages"/>
+
+        <!-- Book Rating View -->
+        <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/start_guideline"
+                app:layout_constraintEnd_toStartOf="@id/end_guideline"
+                app:layout_constraintTop_toBottomOf="@id/book_pages_count_view"
+                android:progressTint="@color/colorPrimaryDark"
+                android:secondaryProgressTint="@color/colorPrimaryDark"
+                android:rating="3.5"
+                android:clickable="false"
+                android:focusable="false"
+                android:layout_marginTop="8dp"
+                android:id="@+id/book_rating_bar"/>
+
+        <!-- Error View -->
+        <include layout="@layout/view_error"
+                 android:visibility="gone"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintTop_toTopOf="parent"
+                 app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <!-- Loading View-->
+        <include layout="@layout/view_loading"
+                 android:visibility="gone"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintTop_toTopOf="parent"
+                 app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

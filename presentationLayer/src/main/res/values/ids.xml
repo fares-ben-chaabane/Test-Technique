@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="error_view" type="id" />
+    <item name="loading_view" type="id" />
+    <item name="nav_host" type="id" />
+    <item name="app_toolbar" type="id" />
+</resources>

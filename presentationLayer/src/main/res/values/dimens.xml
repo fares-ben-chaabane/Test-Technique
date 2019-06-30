@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding">10dp</dimen>
+    <dimen name="padding_big">15dp</dimen>
+    <dimen name="padding_small">5dp</dimen>
+
+    <dimen name="margin">10dp</dimen>
+    <dimen name="margin_big">15dp</dimen>
+    <dimen name="margin_small">5dp</dimen>
+
+    <dimen name="error_image_dimens">200dp</dimen>
+    <dimen name="error_image_margin_top">150dp</dimen>
+</resources>

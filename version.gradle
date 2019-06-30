@@ -1,0 +1,14 @@
+ext.computeVersionCode = {
+    return Integer.parseInt(versionMajor) * 1000000 +
+            Integer.parseInt(versionMinor) * 1000 +
+            Integer.parseInt(versionPatch)
+}
+
+ext.computeProdVersionName = {
+    return "$versionMajor.$versionMinor.$versionPatch"
+}
+
+// Version name must be consistent and don't break version comparison for app updates
+ext.computeVersionName = {
+    return "$versionMajor.$versionMinor.$versionPatch.${new Date().format('yyyyMMddHHmm')}"
+}

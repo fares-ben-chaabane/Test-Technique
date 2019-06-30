@@ -1,0 +1,84 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion Integer.parseInt(compileSdkVersionVar)
+
+
+    defaultConfig {
+        versionCode computeVersionCode()
+        versionName computeProdVersionName()
+
+        minSdkVersion Integer.parseInt(minSdkVersionVar)
+        targetSdkVersion Integer.parseInt(targetSdkVersionVar)
+
+        vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    // For Parcelize feature
+    androidExtensions {
+        experimental = true
+        defaultCacheImplementation = "none"
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "FAVORITE_ENABLED", "true"
+        }
+        release {
+            buildConfigField "boolean", "FAVORITE_ENABLED", "false"
+            minifyEnabled false
+        }
+    }
+
+}
+
+dependencies {
+    kapt libraries.diCheck
+    kapt libraries.daggerCompiler
+    kapt libraries.lifecycleCompiler
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':commons')
+    implementation project(':commons_android')
+    implementation project(':domainLayer')
+
+    implementation libraries.kotlin
+    implementation libraries.ktx
+    implementation libraries.dagger
+    implementation libraries.rxJava
+    implementation libraries.rxKotlin
+    implementation libraries.fresco
+    implementation libraries.threeTen
+    implementation libraries.lifecycleExt
+    implementation libraries.lifecycleReactive
+    implementation libraries.navigation
+    implementation libraries.navigationUi
+
+    implementation libraries.supportAppCompat
+    implementation libraries.supportDesign
+    implementation libraries.supportV4
+    implementation libraries.supportRecyclerView
+    implementation libraries.supportCardView
+    implementation libraries.constraint
+
+    testImplementation testLibraries.junit
+    testImplementation testLibraries.mockito
+    testImplementation testLibraries.mockitoAndroid
+    testImplementation testLibraries.mockitoKotlin
+    testImplementation testLibraries.kluent
+    testImplementation testLibraries.kluentAndroid
+    testImplementation testLibraries.robolectric
+
+    androidTestImplementation testLibraries.supportRunner
+    androidTestImplementation testLibraries.junit
+    androidTestImplementation testLibraries.mockitoKotlin
+    androidTestImplementation testLibraries.mockitoAndroid
+    androidTestImplementation testLibraries.kluentAndroid
+    androidTestImplementation testLibraries.barista
+}

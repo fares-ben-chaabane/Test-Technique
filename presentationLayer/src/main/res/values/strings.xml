@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools"
+           tools:ignore="ExtraTranslation">
+    <string name="app_name">Test Ben Chaabane</string>
+    <string name="loading">Loading &#8230;</string>
+    <string name="error_title">Something wrong happened</string>
+    <string name="error_message">Our servers are down. We kindly apologize for that. Please retry later.</string>
+    <string name="error_retry">Retry</string>
+    <string name="author_intro">Written by</string>
+    <string name="distribution_intro">Distributed by</string>
+    <string name="in">in</string>
+    <string name="pages">Pages</string>
+    <string name="books_list">Books List</string>
+    <string name="book_details">Book details</string>
+    <string name="sort_asc">Sort Publish Date Asc</string>
+    <string name="sort_desc">Sort Publish Date Desc</string>
+    <string name="added_to_favorite">Book added to favorites</string>
+    <string name="removed_from_favorite">Book removed from favorites</string>
+    <string name="show_favorites">Show favorites books</string>
+    <string name="show_all">Show all books</string>
+</resources>

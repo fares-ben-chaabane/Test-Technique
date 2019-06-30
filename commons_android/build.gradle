@@ -1,0 +1,36 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion Integer.parseInt(compileSdkVersionVar)
+
+    defaultConfig {
+        minSdkVersion Integer.parseInt(minSdkVersionVar)
+        targetSdkVersion Integer.parseInt(targetSdkVersionVar)
+
+        versionCode computeVersionCode()
+        versionName computeProdVersionName()
+
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+}
+
+dependencies {
+    implementation project(':commons')
+
+    implementation libraries.kotlin
+    implementation libraries.threeTen
+    implementation libraries.rxJava
+    implementation libraries.rxAndroid
+}

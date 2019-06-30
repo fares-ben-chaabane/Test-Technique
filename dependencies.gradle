@@ -1,0 +1,142 @@
+ext {
+    testLibsVersion = [
+            junit              : "4.12",
+            barista            : "3.1.0",
+            mockito            : "2.28.2",
+            mockitoKotlin      : "2.1.0",
+            robolectric        : "4.0-alpha-3",
+            robolectricMultidex: "3.4.2",
+            supportRunner      : "1.2.0",
+            spoon              : "1.7.1",
+            kluent             : "1.38",
+            espresso           : "3.2.0"
+    ]
+
+    testLibraries = [
+            /** https://github.com/junit-team/junit4 */
+            junit         : "junit:junit:$testLibsVersion.junit",
+
+            /** https://github.com/SchibstedSpain/Barista */
+            barista       : "com.schibsted.spain:barista:$testLibsVersion.barista",
+
+            /** https://developer.android.com/training/testing/espresso/setup */
+            espresso      : "androidx.test.espresso:espresso-core:$testLibsVersion.espresso",
+
+            /** https://github.com/mockito/mockito */
+            mockito       : "org.mockito:mockito-core:$testLibsVersion.mockito",
+            mockitoAndroid: "org.mockito:mockito-android:$testLibsVersion.mockito",
+            mockitoKotlin : "com.nhaarman.mockitokotlin2:mockito-kotlin:$testLibsVersion.mockitoKotlin",
+
+            /** https://github.com/robolectric/robolectric */
+            robolectric   : "org.robolectric:robolectric:$testLibsVersion.robolectric",
+
+            supportRunner : "androidx.test:runner:$testLibsVersion.supportRunner",
+
+            /** https://github.com/square/spoon */
+            spoon         : "com.squareup.spoon:spoon-client:$testLibsVersion.spoon",
+
+            /** https://github.com/MarkusAmshove/Kluent */
+            kluent        : "org.amshove.kluent:kluent:$testLibsVersion.kluent",
+            kluentAndroid : "org.amshove.kluent:kluent-android:$testLibsVersion.kluent"
+    ]
+
+    libsVersion = [
+            kotlin         : "1.3.31",
+            constraint     : "1.1.3",
+            dagger         : "2.12",
+            dicheck        : "1.0.2",
+            fresco         : "1.9.0",
+            gson           : "2.8.5",
+            javaxInject    : "1",
+            javaxValidation: "2.0.1.Final",
+            phoenixProcess : "2.0.0",
+            retrofit2      : "2.4.0",
+            rxAndroid      : "2.0.2",
+            rxKotlin       : "2.2.0",
+            rxJava         : "2.1.16",
+            support        : "27.1.1",
+            androidX       : "1.0.2",
+            androidXMinor  : "1.0.0",
+            design         : "1.0.0-rc01",
+            timber         : "4.7.0",
+            okhttp         : "3.10.0",
+            threeTen       : "1.1.0",
+            realmExt       : "2.5.0",
+            lifecycle      : "2.0.0-rc01",
+            navigation     : "1.0.0-alpha11",
+            appCompat      : "1.0.0"
+    ]
+
+    libraries = [
+            kotlin                 : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$libsVersion.kotlin",
+            ktx                    : "androidx.core:core-ktx:$libsVersion.androidX",
+
+            constraint             : "androidx.constraintlayout:constraintlayout:$libsVersion.constraint",
+
+            /** https://github.com/google/dagger */
+            dagger                 : "com.google.dagger:dagger:$libsVersion.dagger",
+            daggerCompiler         : "com.google.dagger:dagger-compiler:$libsVersion.dagger",
+
+            /** https://github.com/groupon/dependency-injection-checks */
+            diCheck                : "com.groupon.android.dichecks:compiler:$libsVersion.dicheck",
+
+            /** http://frescolib.org/docs/index.html */
+            fresco                 : "com.facebook.fresco:fresco:$libsVersion.fresco",
+
+            /** https://github.com/google/gson */
+            gson                   : "com.google.code.gson:gson:$libsVersion.gson",
+
+            /** https://mvnrepository.com/artifact/javax.validation/validation-api */
+            javaxValidation        : "javax.validation:validation-api:$libsVersion.javaxValidation",
+
+            /** https://github.com/JakeWharton/retrofit2-rxjava2-adapter */
+            retrofit2RxJava2Adapter: "com.squareup.retrofit2:adapter-rxjava2:$libsVersion.retrofit2",
+
+            /** https://github.com/JakeWharton/ProcessPhoenix */
+            phoenixProcess         : "com.jakewharton:process-phoenix:$libsVersion.phoenixProcess",
+
+            /** https://github.com/square/retrofit */
+            retrofit2              : "com.squareup.retrofit2:retrofit:$libsVersion.retrofit2",
+            retrofit2ConverterGson : "com.squareup.retrofit2:converter-gson:$libsVersion.retrofit2",
+            /** https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava2 */
+            retrofit2Adapter       : "com.squareup.retrofit2:adapter-rxjava2:$libsVersion.retrofit2",
+
+            /** https://github.com/ReactiveX/RxAndroid */
+            rxAndroid              : "io.reactivex.rxjava2:rxandroid:$libsVersion.rxAndroid",
+
+            /** https://github.com/ReactiveX/RxJava */
+            rxJava                 : "io.reactivex.rxjava2:rxjava:$libsVersion.rxJava",
+
+            /** https://github.com/ReactiveX/RxKotlin */
+            rxKotlin               : "io.reactivex.rxjava2:rxkotlin:$libsVersion.rxKotlin",
+
+            supportAnnotations     : "androidx.annotation:annotation:$libsVersion.androidX",
+            supportAppCompat       : "androidx.appcompat:appcompat:$libsVersion.appCompat",
+            supportDesign          : "com.google.android.material:material:$libsVersion.design",
+            supportV4              : "androidx.legacy:legacy-support-v4:$libsVersion.androidXMinor",
+            supportRecyclerView    : "androidx.recyclerview:recyclerview:$libsVersion.androidXMinor",
+            supportCardView        : "androidx.cardview:cardview:$libsVersion.androidXMinor",
+
+
+            /** https://github.com/JakeWharton/timber */
+            timber                 : "com.jakewharton.timber:timber:$libsVersion.timber",
+
+            /** https://github.com/square/okhttp */
+            okhttpLogInterceptor   : "com.squareup.okhttp3:logging-interceptor:$libsVersion.okhttp",
+
+            /** https://github.com/JakeWharton/ThreeTenABP */
+            threeTen               : "com.jakewharton.threetenabp:threetenabp:$libsVersion.threeTen",
+
+            /** https://github.com/vicpinm/Kotlin-Realm-Extensions */
+            realmExt               : "com.github.vicpinm:krealmextensions:$libsVersion.realmExt",
+
+            lifecycleReactive      : "androidx.lifecycle:lifecycle-reactivestreams-ktx:$libsVersion.lifecycle",
+            lifecycleCompiler      : "androidx.lifecycle:lifecycle-compiler:$libsVersion.lifecycle",
+            lifecycleExt           : "androidx.lifecycle:lifecycle-extensions:$libsVersion.lifecycle",
+
+            navigation             : "android.arch.navigation:navigation-fragment-ktx:$libsVersion.navigation",
+            navigationUi           : "android.arch.navigation:navigation-ui-ktx:$libsVersion.navigation",
+
+
+    ]
+}

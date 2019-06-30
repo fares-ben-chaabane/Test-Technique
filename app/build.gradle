@@ -1,0 +1,138 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'realm-android'
+
+android {
+    compileSdkVersion Integer.parseInt(compileSdkVersionVar)
+
+    lintOptions {
+        abortOnError false
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+        exclude 'javax/annotation/**'
+        exclude 'signing/**'
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    defaultConfig {
+        applicationId "fr.benchaabane.test"
+
+        versionCode computeVersionCode()
+        versionName computeProdVersionName()
+
+        minSdkVersion Integer.parseInt(minSdkVersionVar)
+        targetSdkVersion Integer.parseInt(targetSdkVersionVar)
+
+        multiDexEnabled true
+
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), "proguard-rules.pro",
+                "${rootProject.projectDir}/proguard/proguard-gson.txt",
+                "${rootProject.projectDir}/proguard/proguard-okhttp.txt",
+                "${rootProject.projectDir}/proguard/proguard-retrofit.txt",
+                "${rootProject.projectDir}/proguard/proguard-realm.txt",
+                "${rootProject.projectDir}/proguard/proguard-fresco.txt"
+
+        testProguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                "${rootProject.projectDir}/proguard/proguard-tests.txt"
+
+    }
+
+    dexOptions {
+        preDexLibraries true
+    }
+
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            testCoverageEnabled true
+            buildConfigField "boolean", "LOG_ENABLE", "true"
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            buildConfigField "boolean", "LOG_ENABLE", "false"
+        }
+    }
+
+    flavorDimensions "default"
+
+    productFlavors {
+
+        prod {
+            dimension "default"
+            buildConfigField "String", "ENV", '"PROD"'
+            buildConfigField "String", "PARSE_APP_ID", '"XZzw8ceursTNY6KA9ZOIxxwQx8a4XRloNkKYpbRr"'
+            buildConfigField "String", "PARSE_API_KEY", '"qAcENCz1XEQbgmdo1z6H8UTircswZzR0inRlz4Mc"'
+        }
+
+        dev {
+            applicationIdSuffix ".dev"
+            versionName computeVersionName()
+            dimension "default"
+            buildConfigField "String", "ENV", '"DEV"'
+            buildConfigField "String", "PARSE_APP_ID", '"XZzw8ceursTNY6KA9ZOIxxwQx8a4XRloNkKYpbRr"'
+            buildConfigField "String", "PARSE_API_KEY", '"qAcENCz1XEQbgmdo1z6H8UTircswZzR0inRlz4Mc"'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "Test-V${variant.versionName}-${variant.flavorName}-${variant.buildType.name}.apk"
+        }
+    }
+
+}
+
+dependencies {
+    kapt libraries.diCheck
+    kapt libraries.daggerCompiler
+    kapt libraries.lifecycleCompiler
+
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':commons')
+    implementation project(':commons_android')
+    implementation project(':domainLayer')
+    implementation project(':dataLayer')
+    implementation project(':presentationlayer')
+
+    implementation libraries.kotlin
+    implementation libraries.ktx
+    implementation libraries.dagger
+    implementation libraries.rxJava
+    implementation libraries.rxKotlin
+    implementation libraries.retrofit2RxJava2Adapter
+    implementation libraries.retrofit2ConverterGson
+    implementation libraries.javaxValidation
+    implementation libraries.okhttpLogInterceptor
+    implementation libraries.timber
+    implementation libraries.fresco
+    implementation libraries.threeTen
+    implementation libraries.lifecycleExt
+    implementation libraries.lifecycleReactive
+}
+
+configurations.all {
+    resolutionStrategy {
+        force libraries.supportAppCompat
+        force libraries.supportCardView
+        force libraries.supportV4
+    }
+}
