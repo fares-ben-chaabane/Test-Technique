@@ -3,7 +3,6 @@ package fr.benchaabane.presentationlayer.views
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.DrawableRes
 import fr.benchaabane.presentationlayer.R
 import fr.benchaabane.presentationlayer.extensions.findErrorView
 import fr.benchaabane.presentationlayer.extensions.makeGone
@@ -27,14 +26,6 @@ class ErrorView(private val view: View,
         }
     }
 
-    fun setMessage(message: String) {
-        messageView.text = message
-    }
-
-    fun setMessage(messageResId: Int) {
-        messageView.text = view.context.getString(messageResId)
-    }
-
     fun hide() {
         view.makeGone()
     }
@@ -43,15 +34,7 @@ class ErrorView(private val view: View,
         view.show()
     }
 
-    fun setRefreshViewBackground(@DrawableRes drawableRes: Int) {
-        refreshView.setBackgroundResource(drawableRes)
-    }
 }
-
-fun errorView(view: View,
-              title: String,
-              icon: Int,
-              onRefreshRequested: () -> Unit) = ErrorView(view.findErrorView(), title, icon, onRefreshRequested)
 
 fun errorView(view: View,
               title: Int,

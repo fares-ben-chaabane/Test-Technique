@@ -4,7 +4,6 @@ package fr.benchaabane.datalayer.books
 import com.nhaarman.mockitokotlin2.mock
 import fr.benchaabane.commons_android.tools.TestSchedulers
 import fr.benchaabane.commons_android.tools.initForTest
-import io.reactivex.Completable
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
@@ -21,7 +20,6 @@ class NetworkBookRepositoryTest {
         data = DataBook()
         apiService = mock {
             given(it.getBooks()).willReturn(Single.just(data.json.bookJsonWrapper))
-            given(it.updateBook("uic", data.json.bookUpdateJson)).willReturn(Completable.complete())
         }
     }
 
@@ -39,19 +37,5 @@ class NetworkBookRepositoryTest {
             .assertNoErrors()
             .assertValueCount(1)
             .assertValue(expected)
-    }
-
-
-    @Test
-    fun `update book`() {
-        // Given
-        val repository = NetworkBooksRepository(apiService)
-
-        // When
-        val testObserver = repository.updateBook(data.domain.bookUpdate).test()
-
-        // Then
-        testObserver.assertComplete()
-            .assertNoErrors()
     }
 }

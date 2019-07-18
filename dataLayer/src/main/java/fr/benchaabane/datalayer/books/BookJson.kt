@@ -13,8 +13,4 @@ data class BookJson(@SerializedName("objectId") val uic: String,
                     @SerializedName("category") val category: String,
                     @SerializedName("year") val publishYear: String,
                     @SerializedName("pages") val pagesCount: Int,
-                    @SerializedName("rate") val rate: Int,
-                    @SerializedName("isFavorite") val isFavorite: Boolean)
-
-data class BookUpdateJson(@SerializedName("objectId") val uic: String,
-                          @SerializedName("isFavorite") val isFavorite: Boolean)
+                    @SerializedName("rate") val rate: Int)

@@ -8,5 +8,4 @@ interface ILocalBooksRepository {
     fun saveBooks(books: List<Book>): Completable
     fun retrieveBooks(): Single<List<Book>>
     fun retrieveBookDetails(uic: String): Single<Optional<Book>>
-    fun updateBook(book: BookUpdate): Completable
 }

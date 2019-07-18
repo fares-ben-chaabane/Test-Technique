@@ -13,8 +13,7 @@ open class BookEntity(@PrimaryKey var uic: String,
                       var distribution: String?,
                       var publishYear: String?,
                       var pagesCount: Int,
-                      var rate: Int,
-                      var isFavorite: Boolean): RealmObject() {
+                      var rate: Int): RealmObject() {
     constructor(): this("", null, null, null, null, null, null,
-        null, 0,0, false)
+        null, 0,0)
 }

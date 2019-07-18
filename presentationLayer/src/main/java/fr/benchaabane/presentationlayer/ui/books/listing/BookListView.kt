@@ -3,13 +3,11 @@ package fr.benchaabane.presentationlayer.ui.books.listing
 import android.graphics.Rect
 import android.view.View
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.facebook.drawee.view.SimpleDraweeView
-import fr.benchaabane.presentationlayer.BuildConfig
 import fr.benchaabane.presentationlayer.R
 import fr.benchaabane.presentationlayer.extensions.*
 import fr.benchaabane.presentationlayer.tools.ListAdapter
@@ -65,39 +63,24 @@ class BookListView(private val view: View,
         viewModel.destroySelf()
     }
 
-    fun sortBooksList(isAsc: Boolean) {
-        viewModel.sortBookList(isAsc)
-    }
-
-    fun filterList(showFavorites: Boolean) {
-        viewModel.filterBookList(showFavorites)
-    }
 
     private fun populateBooksList(books: List<BookPreviewUi>) {
         booksRecycler.adapter = ListAdapter(items = books,
                                             layout = R.layout.item_book_holder,
                                             createViewHolder = { itemView ->
                                                 BookPreviewViewHolder(view = itemView,
-                                                    onBookChosen = { onBookChosen.invoke(it) },
-                                                    onFavoriteClicked = {
-                                                            uic, isFavorite -> viewModel.updateBook(uic, isFavorite)
-                                                        view.showSnackbar(view.context.getString(if (isFavorite)
-                                                            R.string.added_to_favorite else R.string.removed_from_favorite))
-                                                    })})
+                                                    onBookChosen = { onBookChosen.invoke(it) })})
 
     }
 
 
     inner class BookPreviewViewHolder(view: View,
-                                      private val onBookChosen: (uic: String) -> Unit,
-                                      private val onFavoriteClicked: (uic: String, isFavorite: Boolean) -> Unit): ViewHolder<BookPreviewUi>(view) {
+                                      private val onBookChosen: (uic: String) -> Unit): ViewHolder<BookPreviewUi>(view) {
 
         private val coverView by unsafeLazy { view.findViewById<SimpleDraweeView>(R.id.book_cover_view) }
         private val bookTitleView by unsafeLazy { view.findViewById<TextView>(R.id.book_title_view) }
         private val bookAuthorView by unsafeLazy { view.findViewById<TextView>(R.id.book_author_view) }
         private val bookDistributionView by unsafeLazy { view.findViewById<TextView>(R.id.book_distribution_view) }
-        private val favoriteView by unsafeLazy { view.findViewById<AppCompatImageView>(R.id.book_favorite_view) }
-        private val shadowView by unsafeLazy { view.findViewById<View>(R.id.book_cover_shadow_view) }
 
         override fun bind(item: BookPreviewUi) {
             super.bind(item)
@@ -106,21 +89,11 @@ class BookListView(private val view: View,
                 bookTitleView.text = title
                 bookAuthorView.text = author
                 bookDistributionView.text = distribution
-                favoriteView.setImageResource(if (isFavorite) R.drawable.ic_favorite_full else R.drawable.ic_favorite_empty)
-                if (BuildConfig.FAVORITE_ENABLED) {
-                    favoriteView.show()
-                    shadowView.show()
-                    favoriteView.setOnClickListener {
-                        onFavoriteClicked.invoke(uic, !isFavorite)
-                        //favoriteView.setImageResource(if (isFavorite) R.drawable.ic_favorite_empty else R.drawable.ic_favorite_full)
-                    }
-                }
             }
             itemView.setOnClickListener {  onBookChosen.invoke(item.uic) }
         }
 
         override fun unbind() {
-            favoriteView.removeOnClickListener()
             itemView.removeOnClickListener()
             super.unbind()
         }

@@ -6,6 +6,4 @@ data class BookPreviewUi(
     val author: String,
     val distribution: String,
     val publishYear: Int,
-    val coverUrl: String,
-    val isFavorite: Boolean
-)
+    val coverUrl: String)

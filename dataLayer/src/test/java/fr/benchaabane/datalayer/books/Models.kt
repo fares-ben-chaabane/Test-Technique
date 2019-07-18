@@ -20,10 +20,7 @@ class DataBook {
             rate = 2,
             summary = "summary",
             category = BookCategory.COMEDY,
-            publishYear = "2000",
-            isFavorite = false
-        )
-        val bookUpdate = BookUpdate("uic", isFavorite = true)
+            publishYear = "2000")
     }
 
     class Json {
@@ -36,10 +33,8 @@ class DataBook {
             rate = 2,
             summary = "summary",
             category = "Comedy",
-            publishYear = "2000",
-            isFavorite = false)
+            publishYear = "2000")
 
         val bookJsonWrapper = BookWrapperJson(books = listOf(bookJson, bookJson.copy(uic = "2", rate = 4)))
-        val bookUpdateJson = BookUpdateJson(uic = "uic", isFavorite = true)
     }
 }

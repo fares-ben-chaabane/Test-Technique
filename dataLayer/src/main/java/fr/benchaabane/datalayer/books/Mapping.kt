@@ -2,7 +2,6 @@ package fr.benchaabane.datalayer.books
 
 import fr.benchaabane.domainlayer.books.Book
 import fr.benchaabane.domainlayer.books.BookCategory
-import fr.benchaabane.domainlayer.books.BookUpdate
 
 internal fun BookJson.toBook() = Book(uic = uic,
     title = title,
@@ -13,8 +12,7 @@ internal fun BookJson.toBook() = Book(uic = uic,
     pagesCount = pagesCount,
     publishYear = publishYear,
     rate = rate,
-    summary = summary?: "",
-    isFavorite = isFavorite)
+    summary = summary?: "")
 
 internal fun BookEntity.toBook() = Book(
     uic = uic,
@@ -26,8 +24,7 @@ internal fun BookEntity.toBook() = Book(
     pagesCount = pagesCount,
     publishYear = publishYear?: "",
     rate = rate,
-    summary = summary?: "",
-    isFavorite = isFavorite)
+    summary = summary?: "")
 
 internal fun Book.toBookEntity() = BookEntity(uic = uic,
     title = title,
@@ -38,11 +35,7 @@ internal fun Book.toBookEntity() = BookEntity(uic = uic,
     pagesCount = pagesCount,
     publishYear = publishYear,
     rate = rate,
-    summary = summary,
-    isFavorite = isFavorite)
-
-internal fun BookUpdate.toBookJson() = BookUpdateJson(uic = uic,
-    isFavorite = isFavorite)
+    summary = summary)
 
 typealias Category = String
 internal fun Category.toBookCategory(): BookCategory {

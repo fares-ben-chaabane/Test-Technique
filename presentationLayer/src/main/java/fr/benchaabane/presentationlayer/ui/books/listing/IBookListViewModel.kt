@@ -11,9 +11,6 @@ interface IBookListViewModel {
 
     fun fetchBooks()
     fun refreshBookList()
-    fun sortBookList(isAsc: Boolean)
-    fun filterBookList(showFavorites: Boolean)
-    fun updateBook(uic: String, isFavorite: Boolean)
     fun retry()
     fun destroySelf()
 }

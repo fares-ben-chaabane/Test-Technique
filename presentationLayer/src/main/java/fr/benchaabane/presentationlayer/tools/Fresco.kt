@@ -3,18 +3,11 @@ package fr.benchaabane.presentationlayer.tools
 import android.graphics.drawable.Animatable
 import android.net.Uri
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-import com.facebook.common.util.UriUtil
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.controller.BaseControllerListener
 import com.facebook.drawee.view.SimpleDraweeView
 import com.facebook.imagepipeline.image.ImageInfo
 
-
-fun SimpleDraweeView.loadResource(drawableId: Int) {
-    loadUri(Uri.Builder().scheme(UriUtil.LOCAL_RESOURCE_SCHEME)
-                    .path(drawableId.toString())
-                    .build())
-}
 
 fun SimpleDraweeView.loadUrl(url: String?) {
     loadUri(url?.let { Uri.parse(it) })

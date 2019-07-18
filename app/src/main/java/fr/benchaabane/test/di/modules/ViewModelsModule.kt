@@ -2,7 +2,10 @@ package fr.benchaabane.test.di.modules
 
 import dagger.Module
 import dagger.Provides
-import fr.benchaabane.domainlayer.books.*
+import fr.benchaabane.domainlayer.books.RetrieveBookDetailsUseCase
+import fr.benchaabane.domainlayer.books.RetrieveLocalBooksUseCase
+import fr.benchaabane.domainlayer.books.RetrieveNetworkBooksUseCase
+import fr.benchaabane.domainlayer.books.SaveBooksUseCase
 import fr.benchaabane.presentationlayer.tools.Resources
 import fr.benchaabane.presentationlayer.ui.books.details.BookDetailsViewModel
 import fr.benchaabane.presentationlayer.ui.books.listing.BookListViewModel
@@ -22,10 +25,9 @@ class ViewModelsModule {
     fun provideBookListViewModel(retrieveLocalBooksUseCase: RetrieveLocalBooksUseCase,
                                  retrieveNetworkBooksUseCase: RetrieveNetworkBooksUseCase,
                                  saveBooksUseCase: SaveBooksUseCase,
-                                 addBookToFavoriteUseCase: AddBookToFavoriteUseCase,
                                  resources: Resources): BookListViewModel {
         return BookListViewModel(retrieveLocalBooksUseCase, retrieveNetworkBooksUseCase,
-            saveBooksUseCase, addBookToFavoriteUseCase, resources)
+            saveBooksUseCase, resources)
     }
 
     @Provides

@@ -26,9 +26,4 @@ class UseCasesModule {
     fun provideBookDetailsUseCase(localRepository: ILocalBooksRepository): RetrieveBookDetailsUseCase {
         return RetrieveBookDetailsUseCase(localRepository)
     }
-
-    @Provides
-    fun provideAddToFavoriteUseCase(repository: INetworkBooksRepository, localRepository: ILocalBooksRepository): AddBookToFavoriteUseCase {
-        return AddBookToFavoriteUseCase(repository, localRepository)
-    }
 }

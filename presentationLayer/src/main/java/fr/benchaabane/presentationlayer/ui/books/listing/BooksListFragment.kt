@@ -2,11 +2,7 @@ package fr.benchaabane.presentationlayer.ui.books.listing
 
 import android.content.Context
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
-import fr.benchaabane.presentationlayer.BuildConfig
 import fr.benchaabane.presentationlayer.R
 import fr.benchaabane.presentationlayer.di.injector
 import fr.benchaabane.presentationlayer.extensions.cast
@@ -54,40 +50,6 @@ class BooksListFragment : BaseFragment(R.layout.fragment_books_list) {
         bookListView?.destroy()
         bookListView = null
         super.onDestroy()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.book_list_menu, menu)
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu?) {
-        super.onPrepareOptionsMenu(menu)
-        if (BuildConfig.FAVORITE_ENABLED) {
-            menu?.findItem(R.id.action_show_favorites)?.isVisible = true
-            menu?.findItem(R.id.action_show_all)?.isVisible = true
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item?.itemId) {
-            R.id.action_sort_asc -> {
-                bookListView?.sortBooksList(isAsc = true)
-                true
-            }
-            R.id.action_sort_desc -> {
-                bookListView?.sortBooksList(isAsc = false)
-                true
-            }
-            R.id.action_show_favorites -> {
-                bookListView?.filterList(showFavorites = true)
-                true
-            }
-            R.id.action_show_all -> {
-                bookListView?.filterList(showFavorites = false)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
 

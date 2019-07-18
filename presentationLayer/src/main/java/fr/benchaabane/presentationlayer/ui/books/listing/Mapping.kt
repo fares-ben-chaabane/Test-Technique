@@ -9,5 +9,4 @@ internal fun Book.toBookPreviewUi(resources: Resources) = BookPreviewUi(title = 
     distribution = "${resources.getString(R.string.distribution_intro)} $distribution ${resources.getString(R.string.`in`)} $publishYear",
     coverUrl = coverUrl,
     uic = uic,
-    publishYear = publishYear.toInt(),
-    isFavorite = isFavorite)
+    publishYear = publishYear.toInt())

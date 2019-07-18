@@ -2,8 +2,10 @@ package fr.benchaabane.presentationlayer.ui.books.listing
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import fr.benchaabane.commons.tools.Logger
-import fr.benchaabane.domainlayer.books.*
+import fr.benchaabane.domainlayer.books.Book
+import fr.benchaabane.domainlayer.books.RetrieveLocalBooksUseCase
+import fr.benchaabane.domainlayer.books.RetrieveNetworkBooksUseCase
+import fr.benchaabane.domainlayer.books.SaveBooksUseCase
 import fr.benchaabane.presentationlayer.extensions.subscribeAsyncToState
 import fr.benchaabane.presentationlayer.extensions.subscribeAsyncToStateWithRetry
 import fr.benchaabane.presentationlayer.tools.Resources
@@ -14,7 +16,6 @@ import io.reactivex.subjects.PublishSubject
 class BookListViewModel(private val retrieveLocalBooksUseCase: RetrieveLocalBooksUseCase,
                         private val retrieveNetworkBooksUseCase: RetrieveNetworkBooksUseCase,
                         private val saveBooksUseCase: SaveBooksUseCase,
-                        private val addBookToFavoriteUseCase: AddBookToFavoriteUseCase,
                         private val resources: Resources) : ViewModel(), IBookListViewModel {
 
     private val disposables = CompositeDisposable()
@@ -69,24 +70,6 @@ class BookListViewModel(private val retrieveLocalBooksUseCase: RetrieveLocalBook
             )
     }
 
-    override fun sortBookList(isAsc: Boolean) {
-        booksList.value = if (isAsc) booksList.value?.sortedBy { it.publishYear } else booksList.value?.sortedByDescending { it.publishYear }
-    }
-
-    override fun filterBookList(showFavorites: Boolean) {
-        if (showFavorites) booksList.value = booksList.value?.filter { it.isFavorite } else fetchBooks()
-    }
-
-    override fun updateBook(uic: String, isFavorite: Boolean) {
-        disposables += addBookToFavoriteUseCase.execute(BookUpdate(uic, isFavorite))
-            .subscribeAsyncToState(
-                onSuccess = {
-                    booksList.value = booksList.value?.map { if (it.uic == uic) it.copy(isFavorite = isFavorite) else it }
-                },
-                onError = { Logger.e(it) },
-                onLoading = {}
-            )
-    }
 
     override fun retry() {
         retry.onNext(Unit)
@@ -96,6 +79,10 @@ class BookListViewModel(private val retrieveLocalBooksUseCase: RetrieveLocalBook
         disposables.clear()
     }
 
+
+    /* ------------------------------------- */
+    /*              Processing               */
+    /* ------------------------------------- */
 
     private fun saveBooks(books: List<Book>) {
         disposables += saveBooksUseCase.execute(books)

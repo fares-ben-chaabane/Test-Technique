@@ -10,12 +10,7 @@ data class Book(
     val rate: Int,
     val summary: String,
     val category: BookCategory,
-    val publishYear: String,
-    val isFavorite: Boolean
-)
-
-data class BookUpdate(val uic: String,
-                      val isFavorite: Boolean)
+    val publishYear: String)
 
 enum class BookCategory {
     NOVEL, HISTORY, FICTION, WAR, COMEDY

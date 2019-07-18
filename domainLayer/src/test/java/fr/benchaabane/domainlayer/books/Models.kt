@@ -15,9 +15,7 @@ class DataBook {
             rate = 2,
             summary = "summary",
             category = BookCategory.COMEDY,
-            publishYear = "2000",
-            isFavorite = false
-        )
+            publishYear = "2000")
     }
 }
 

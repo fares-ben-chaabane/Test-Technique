@@ -76,29 +76,6 @@
                 style="@style/TextViewStyle.Medium"
                 tools:text="Distributed by Fares in 1989"/>
 
-        <!-- Shadow View -->
-        <View
-                android:id="@+id/book_cover_shadow_view"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@drawable/bg_shadow"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-        <!-- Favorite View -->
-        <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/book_favorite_view"
-                android:visibility="gone"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                app:srcCompat="@drawable/ic_favorite_empty"/>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
